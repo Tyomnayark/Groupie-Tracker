@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(72, 72, 78);
+}
+
+.container {
+    text-align: center;
+    background-color: rgb(53, 53, 53);
+    border-radius: 10px;
+    padding: 30px 30px;
+}
+
+.error_code {
+    font-size: 150px;
+    color: white;
+}
+
+.error_message {
+    font-size: 100px;
+    color: white;
+}

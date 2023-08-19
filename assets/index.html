@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/indexStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <title>Groupie tracker</title>
+</head>
+<body>
+    <div class="intro">
+      <div class="rectangle_orange">
+        <div class="intro-text">
+        <h1>GROUPIE TRACKER</h1>
+        </div>
+      </div>
+    </div>
+    <div class="gropie">
+        {{range .}}
+        <div class="band">
+          <div class="content">
+            <h4 class="artist"><a class="link" href="/artist?id={{.ID}}">{{.Name}}</a></h4>
+          </div>
+          <a class="link2" href="/artist?id={{.ID}}">
+            <div class="black_rectangle">
+            <img class="image" src="{{.Image}}" alt="{{.Name}} photo">
+            </div>
+          </a>
+        </div>
+        {{end}}
+      </div>
+</body>
+</html>
