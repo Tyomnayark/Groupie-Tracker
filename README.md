@@ -24,5 +24,4 @@ This project focuses on building a user friendly website where it displays the b
 
 
 ## Authors:
-    @etolmach
-    @yeakbay
+[Tyomnayark](https://github.com/Tyomnayark)
