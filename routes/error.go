@@ -16,7 +16,6 @@ func Error(w http.ResponseWriter, code int) {
 	response.ErrorCode = code
 	response.ErrorText = http.StatusText(code)
 
-	w.WriteHeader(code)
 	fmt.Println(code)
 	fmt.Println(http.StatusText(code))
 	tmpl, err := template.ParseFiles("./assets/errorPage.html")
@@ -24,5 +23,6 @@ func Error(w http.ResponseWriter, code int) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
+	// w.WriteHeader(code)
 	tmpl.Execute(w, response)
 }

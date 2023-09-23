@@ -1,49 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/bandPageStyle.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand:wght@300&display=swap" rel="stylesheet">
-    <title>{{.Name}}</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/static/css/bandPageStyle.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;family=Quicksand:wght@300&amp;display=swap" rel="stylesheet">
+  <title>{{.Name}}</title>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=c01e668d-5f15-408d-9e29-66706f77375e&lang=en_US" type="text/javascript">
+  </script>
+    <script type="text/javascript" async>
+        ymaps.ready(init);
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [0, 0],
+                zoom: 7,
+            });
+
+            var coordinatesDataElement = document.getElementById('coordinates-data');
+            var coordinatesDataString = coordinatesDataElement.textContent.trim();
+            coordinatesDataString = "[" + coordinatesDataString.slice(0, -1) + "]";
+            var coordinatesArray = JSON.parse(coordinatesDataString);
+            console.log(coordinatesArray)
+            for (var i = 0; i < coordinatesArray.length; i++) {
+                var coord = coordinatesArray[i];
+                myMap.geoObjects.add(new ymaps.Placemark([parseFloat(coord.latitude), parseFloat(coord.longitude)], {
+                    balloonContent: coord.location
+                }));
+            }
+            myMap.container.fitToViewport();
+            myMap.container.getElement().style.width = '100%';
+            myMap.container.getElement().style.height = '100%';
+        }
+    </script>
 </head>
 <body>
-    <div class="container">
+  <div class="container">
     <div class="main-vertical-container">
-        <img class="image" src="{{.Image}}" alt="{{.Name}} photo">
-        <div class="intro-text">
-            <div class="band">{{.Name}}</div>
-            <div class="first_album_line">First album</div>
-            <div class="first_album">{{.FirstAlbum}}</div>
-            <div class="creation_date">since {{.CreationDate}}</div>
-            <div class="members" >
-                {{range .Members}}
-                <div class="member">  {{.}}</div>
-                {{end}}
-            </div>
-    </div>
+      <img class="image" src="{{.Image}}" alt="{{.Name}} photo">
+      <div class="intro-text">
+        <div class="band">
+          {{.Name}}
+        </div>
+        <div class="first_album_line">
+          First album
+        </div>
+        <div class="first_album">
+          {{.FirstAlbum}}
+        </div>
+        <div class="creation_date">
+          since {{.CreationDate}}
+        </div>
+        <div class="members">
+          {{range .Members}}
+          <div class="member">
+            {{.}}
+          </div>{{end}}
+        </div>
+      </div>
     </div>
     <div class="vertical-container">
-        <a class="link" href="/">BACK</a>
-       
-            <div class="concert_container">
+      <a class="link" href="/">BACK</a>
+      <div class="concert_container">
         <div class="concerts">
-            {{range $location, $dates := .DatesLocations}}
-            <div class="location">{{ $location }}</div>
-            {{range $dates}}
-            <div class="date">{{ . }}</div>
-            {{end}}
-            {{end}}
+          {{range $location, $coords := .LocationsDatesCoords}}
+          <div class="location">
+            {{ $location }}
+          </div>{{range $coords.Dates}}
+          <div class="date">
+            {{ . }}
+          </div>{{end}}
+          {{end}} 
         </div>
         <div class="rounded-map-container">
             <div class="rounded-map">
-                <iframe src="https://www.google.com/maps/embed?pb=..." style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="map" id="map"></div>                
             </div>
         </div>
-            </div>
-
+        
+        <div id="coordinates-data" style="display: none;">
+            {{range $location, $coords := .LocationsDatesCoords}}
+                {"location": "{{$location}}", "latitude": "{{$coords.Latitude}}", "longitude": "{{$coords.Longitude}}"},
+            {{end}}
+        </div>  
     </div>
     </div>
+  </div>
 </body>
 </html>

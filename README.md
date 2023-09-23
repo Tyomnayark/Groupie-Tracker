@@ -1,4 +1,4 @@
-# GROUPIE-TRACKER
+# GROUPIE-TRACKER-SEARCH-BAR
 
 Groupie Trackers consists on receiving a given API and manipulate the data contained in it, in order to create a site, displaying the information.
 
@@ -12,7 +12,7 @@ Groupie Trackers consists on receiving a given API and manipulate the data conta
 
     * And the last one, relation, does the link between all the other parts, artists, dates and locations.
 
-This project focuses on building a user friendly website where it displays the bands info through several data visualizations.
+This project focuses on building a user friendly website where it displays the bands info through several data visualizations and have search bar.
 
 
 
@@ -24,4 +24,5 @@ This project focuses on building a user friendly website where it displays the b
 
 
 ## Authors:
-[Tyomnayark](https://github.com/Tyomnayark)
+    @etolmach
+    @yeakbay

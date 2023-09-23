@@ -1,7 +1,7 @@
 
 body {
   margin: 0;
-  font-size: 15px;
+  font-size: 30px;
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   background-attachment: fixed;
@@ -44,7 +44,53 @@ body {
   left: 20px; 
   position: relative;
 }
+.search{
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  justify-content: space-between;
+}
 
+#search_bar {
+  resize: none;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 40px; 
+  position: relative;
+  width: 40%;
+  font-size: 30px;
+  border: none;
+  outline: none; 
+}
+
+.hint_place{
+  background-color: white;
+  z-index: 9999;
+  position: relative;
+  overflow-y: scroll;
+  max-height: 200px;
+  overflow-y: auto; 
+  width: calc(40% - 10px);
+}
+
+a.selected {
+  background-color:rgb(255, 132, 31);
+  color: white;
+}
+a {
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+}
+
+.selected {
+  background-color:rgb(255, 132, 31);
+  color: white;
+}
+ul {
+  list-style: none; 
+
+}
 .gropie {
   display: flex;
   font-family: 'Poppins', sans-serif;
@@ -56,9 +102,11 @@ body {
 
 .band {
   text-transform: uppercase;
-  background-color: rgb(53, 53, 53);
+  background-color: rgb(210, 210, 210);
   /* margin: 10px;
   padding: 20px; */
+  text-decoration: none;
+  color: black;
   width: calc(50% - 30px); 
   color: white;
   border-radius: 10px; 
@@ -167,7 +215,15 @@ body {
     left: 20px;
     position: relative;
   }
-  
+  #search_bar {
+    width: 70%;
+    font-size: 20px;
+  }
+  .hint_place{
+    font-size: 20px;
+    width: 70%;
+  }
+
 }
 @media (max-width: 471px) {
   .intro-text {
@@ -179,6 +235,14 @@ body {
   .rectangle_orange {
     top: 5px;
     height: 200px;
+  }
+  #search_bar {
+    width: 100%;
+    font-size: 15px;
+  }
+  .hint_place{
+    font-size: 15px;
+    width: 100%;
   }
 
 }
